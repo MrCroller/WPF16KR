@@ -1,0 +1,74 @@
+﻿<Window x:Class="WPF16KR.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF16KR" 
+        xmlns:viewmodel="clr-namespace:WPF16KR.ViewModel"
+        mc:Ignorable="d"
+        Title="16Kr"
+        Height="400" Width="800" 
+        MinHeight="300" MinWidth="600">
+
+    <Window.DataContext>
+        <viewmodel:ApplicationViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Label Content="f(x,y): " Margin="10,24,0,0" VerticalAlignment="Top" Height="30" FontWeight="Bold" FontSize="16" Width="49" HorizontalAlignment="Left"/>
+        <ComboBox x:Name="mainFuncBox" Margin="59,30,0,0"
+                  ItemsSource="{Binding Functions.Keys}"
+                  SelectedItem="{Binding SelectedFunc}"
+                  VerticalAlignment="Top" Height="22" 
+                  HorizontalAlignment="Left" Width="120"/>
+        <Label Content="a: " Margin="35,71,0,0" VerticalAlignment="Top" Height="30" FontSize="14" Width="24" HorizontalAlignment="Left"/>
+        <TextBox x:Name="aFtextbox" 
+                 Text="{Binding A}"
+                 Margin="59,78,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" MaxLines="1" 
+                 MaxLength="5" Height="18" 
+                 HorizontalAlignment="Left" Width="80"/>
+         <Label Content="b: " Margin="34,114,0,0" VerticalAlignment="Top" Height="30" FontSize="14" Width="24" HorizontalAlignment="Left"/>
+        <TextBox x:Name="bFtextbox" 
+                 Text="{Binding B}"
+                 Margin="59,121,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" MaxLines="1" 
+                 MaxLength="5" Height="18" 
+                 HorizontalAlignment="Left" Width="80"/>
+        <Label Content="с: " Margin="36,154,0,0" VerticalAlignment="Top" Height="30" FontSize="14" Width="24" HorizontalAlignment="Left"/>
+        <TextBox x:Name="cFuncBox" 
+            Text="{Binding C}"
+            Margin="59,161,0,0" TextWrapping="Wrap" 
+            VerticalAlignment="Top" MaxLength="5"
+            MaxLines="1" Height="18" HorizontalAlignment="Left" 
+            Width="80" IsReadOnly="True"/>
+        <ComboBox x:Name="cFuncList" Margin="152,159,0,0"
+                  ItemsSource="{Binding ExtentCList, Mode=TwoWay}"
+                  SelectedItem="{Binding C}"
+                  VerticalAlignment="Top"
+                  Width="27" Height="22" 
+                  HorizontalAlignment="Left"/>
+        <Label Content="{Binding Function}" 
+       HorizontalAlignment="Left" 
+       Margin="48,267,0,0" VerticalAlignment="Top"/>
+        <Grid Margin="234,24,34,19">
+            <DataGrid x:Name="TableFunc"
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding DataMap}"
+                      MaxColumnWidth="500">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="X" 
+                        Binding="{Binding Path=X}" 
+                        Width="50" />
+                    <DataGridTextColumn Header="Y" 
+                        Binding="{Binding Path=Y}"
+                        Width="50" />
+                    <DataGridTextColumn Header="f(x,y)" 
+                        Binding="{Binding Path=FuncXY}" 
+                        IsReadOnly="True"
+                        Width="150" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
