@@ -7,4 +7,15 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Tests\**" />
+    <Compile Remove="WPF16KR.Tests\**" />
+    <EmbeddedResource Remove="Tests\**" />
+    <EmbeddedResource Remove="WPF16KR.Tests\**" />
+    <None Remove="Tests\**" />
+    <None Remove="WPF16KR.Tests\**" />
+    <Page Remove="Tests\**" />
+    <Page Remove="WPF16KR.Tests\**" />
+  </ItemGroup>
+
 </Project>
